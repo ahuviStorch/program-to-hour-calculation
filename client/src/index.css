@@ -1,0 +1,63 @@
+/**
+ * index.css — נקודת הכניסה של העיצוב.
+ *
+ * Tailwind v4 מייבא את כל השכבות בקו אחד. משתני העיצוב מוגדרים ב-@theme,
+ * והגופן נשאר גופן מערכת (ללא טעינה מהאינטרנט, שכן הסביבה עשויה להיות מסוננת).
+ */
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Segoe UI", "Arial", "David", "Narkisim", system-ui, sans-serif;
+  --font-mono: "Consolas", "Courier New", ui-monospace, monospace;
+}
+
+/* בסיס כללי: כיוון מימין לשמאל ומראה נקי */
+html {
+  direction: rtl;
+}
+
+body {
+  @apply bg-slate-100 text-slate-800 antialiased;
+}
+
+/* הבהוב עדין לנקודת "פעיל" */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 1.6s ease-in-out infinite;
+}
+
+/* רעידה קצרה כשמוזן PIN שגוי */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* כניסה חלקה לחלונות מודאליים */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.15s ease-out;
+}
+
+/* כיבוד העדפת מערכת להפחתת תנועה */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-soft,
+  .animate-shake,
+  .animate-fade-in {
+    animation: none;
+  }
+}
